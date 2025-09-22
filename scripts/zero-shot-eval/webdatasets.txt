@@ -1,0 +1,4 @@
+wds/imagenet1k
+wds/imagenetv2
+wds/imagenet_sketch
+wds/imagenet-r

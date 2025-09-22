@@ -1,0 +1,19 @@
+torchrun --nproc_per_node 2 -m open_clip_train.main \
+    --save-frequency 1 \
+    --report-to tensorboard \
+ 	 --train-data="/home/h3c/lyl/data/flickr30k/train/{0..4}.tar::/home/h3c/lyl/data/wds_mscoco_captions/train/{0..13}.tar" \
+    --val-data="/home/h3c/lyl/data/wds_mscoco_captions/test/{0..4}.tar"  \
+    --warmup 200 \
+    --batch-size 256 \
+    --lr=1e-3 \
+    --wd=0.1 \
+    --epochs=30\
+    --workers=4 \
+    --seed=42 \
+    --distill-model=ViT-L-14 \
+    --train-num-samples 111783 \
+    --enable-ibm-module \
+    --pretrain-ibm \
+    --distill-pretrained /home/h3c/lyl/open_clip/models/ViT-L-14/laion/CLIP-ViT-L-14-DataComp.XL-s13B-b90K/CLIP-ViT-L-14-DataComp.XL-s13B-b90K/open_clip_pytorch_model.bin \
+    --resume=/home/h3c/lyl/open_clip/scripts/logs/2025_09_17-09_19_07-model_RN50-lr_0.001-b_256-j_4-p_amp/checkpoints/epoch_5.pt
+    # --distill-pretrained /home/h3c/lyl/open_clip/logs/2025_07_18-11_03_06-model_ViT-L-14-lr_1e-06-b_28-j_4-p_amp/checkpoints/epoch_30.pt \

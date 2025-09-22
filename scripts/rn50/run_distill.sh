@@ -1,0 +1,18 @@
+torchrun --nproc_per_node 2 -m open_clip_train.main \
+   --report-to tensorboard \
+    --save-frequency 1 \
+ 	--train-data="/home/h3c/lyl/data/flickr30k/train/{0..4}.tar::/home/h3c/lyl/data/wds_mscoco_captions/train/{0..13}.tar" \
+    --val-data="/home/h3c/lyl/data/wds_mscoco_captions/test/{0..4}.tar" \
+    --warmup 500 \
+    --batch-size 64 \
+    --lr=1e-6 \
+    --wd=0.1 \
+    --epochs=30 \
+    --workers=4 \
+    --seed=42 \
+    --model=RN50 \
+    --train-num-samples 111783 \
+    --distill-model=ViT-L-14 \
+    --enable-ibm-module \
+    --distill-pretrained /home/h3c/lyl/open_clip/scripts/logs/2025_09_16-16_27_04-model_RN50-lr_1e-06-b_16-j_4-p_amp/checkpoints/epoch_1.pt \
+    --pretrained=/home/h3c/lyl/open_clip/models/RN50/RN50.pt\
