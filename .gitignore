@@ -3,6 +3,7 @@
 models/
 features/
 results/
+release/
 
 nohup.out
 
